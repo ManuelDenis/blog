@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-lg">
+<div class="row my-5">
+    <div class="col-lg-6 py-5">
+        <h3>Profile information({{ user_profile.id }})</h3>
+
+        <p><strong>Name</strong>  {{ user_profile.name|default_if_none:"Complete your profile name!" }}</p>
+        <p><strong>Email</strong> {{ user.email }}</p>
+        <p><strong>Age</strong>   {{ user_profile.age|default:"Age is not set for this user" }}</p>
+        <a href="{% url 'update' user_profile.id %}" class="btn btn-danger" role="button">Update</a>
+    </div>
+</div>
+</div>
+{% endblock %}
