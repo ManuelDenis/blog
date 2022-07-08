@@ -2,4 +2,71 @@
 
 {% block content %}
 
+      <div class="container-fluid" id="header">
+	  <!-- hero section -->
+	  <div class="container" id="hero">
+	  	<div class="row justify-content-end">
+	  		<div class="col-lg-6 hero-img-container">
+	  			<a href="./single.html">
+	  			<div class="hero-img">
+	  				<img src="/static/img/hero-img4.png" alt="">
+	  			</div>
+	  			</a>
+	  		</div>
+
+	  		<div class="col-lg-9">
+	  			<div class="hero-title">
+	  				<a href="./single.html">
+	  				<h1>Plante medicinale din Romania</h1>
+	  				</a>
+	  			</div>
+
+	  		</div>
+
+	  		<div class="col-lg-6">
+	  			<div class="hero-meta">
+	  				<p>Pe site veți găsi descrierea și utilizările principalelor plante medicinale din România.</p>
+	  				<div class="author">
+	  					<div class="author-img"><img src="/static/img/author-img.png" alt=""></div>
+	  					<div class="author-meta">
+	  					<span class="author-name">Celeste Connell</span>
+	  					<span class="author-tag">Travel Blogger</span>
+	  					</div>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+	  </div>
+
+      </div>
+
+
+    <!-- Article Grid -->
+
+<div class="container mt-2 mb-2 pt-5 pb-5" id="article-grid">
+	<div class="row justify-content-center">
+        {% for post in post_list %}
+
+		<div class="col-xl-6 col-lg-12 text-center">
+			<a href="./single.html">
+			<div class="article-card">
+			<div class="article-img">
+				<img src="{{ post.image.url }}" alt="">
+			</div>
+
+				<div class="article-meta text-left">
+                    <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
+					<h2>{{ post.title }}</h2>
+					<p>{{ post.content|truncatechars:100 }}</p>
+				</div>
+			</div>
+			</a>
+		</div>
+
+        {% endfor %}
+
+
+	</div> <!-- Article Grid Row Ends -->
+</div> <!-- Article Grid Container Ends -->
+
 {% endblock %}

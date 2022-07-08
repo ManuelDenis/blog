@@ -2,12 +2,12 @@
 
 {% block content %}
     <div class="container-lg">
-    <div class="row my-5">
+    <div class="row my-5 text-center justify-content-md-center">
         <div class="col-lg-4 py-5">
             <h3>{{ message }}</h3>
     <form method="post">
-        {{ form.as_p }}
         {% csrf_token %}
+        {{ form.as_p }}
         <button type="submit" >Submit</button>
     </form>
 

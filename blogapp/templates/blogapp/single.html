@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+		<!-- Hero Section -->
+	   <div class="container-lg" id="hero">
+	  	<div class="row justify-content-end">
+	  		<div class="col-lg-6 hero-img-container p-3">
+	  			<a href="./single.html">
+	  			<div class="hero-img">
+	  				<img src="{{ post.image.url }}" alt="">
+	  			</div>
+	  			</a>
+	  		</div>
+
+	  		<div class="col-lg-9">
+	  			<div class="hero-title">
+	  				<a href="./single.html">
+	  				<h1>{{ post.title }}</h1>
+	  				</a>
+	  			</div>
+	  		</div>
+
+	  		<div class="col-lg-6">
+	  			<div class="hero-meta">
+	  				<p>{{ post.subtitle|truncatechars:180 }}</p>
+	  				<div class="author">
+	  					<div class="author-img"><img src="/static/img/author-img.png" alt=""></div>
+	  					<div class="author-meta">
+	  					<span class="author-name">{{ post.author.profile.name|capfirst }}</span>
+	  					<span class="author-tag">Travel Blogger</span>
+	  					</div>
+	  				</div>
+	  			</div>
+	  		</div>
+	  	</div>
+	  </div>
+
+    <!-- Content -->
+    <div class="container-lg  mt-5" id="content">
+	<div class="row">
+
+		<!-- the content -->
+        <div class="col-lg-3">
+
+        </div>
+		<div class="col-lg-6 p-4">
+			<p>{{ post.content }}</p>
+		</div>
+
+		<div class="col-lg-6 mt-3">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container-lg">
+    <div class="row justify-content-md-center">
+    <div class="col-lg-6">
+        <form method="POST">
+                {% csrf_token %}
+                {{ form.content }}
+
+            <p><button type="submit" class="save btn btn-default">Post</button></p>
+             </form>
+    </div>
+    </div>
+
+<div class="col-lg-6">
+        {% for c in com %}
+        <div class="col-lg-6 rounded">
+            <h6>{{ c.author }}</h6>
+            <h6><small>{{ c.posted }}</small></h6>
+                <p>{{ c.content }}</p>
+        </div>
+        {% endfor %}
+</div>
+
+
+    </div>
+
+
+    <!-- Related Article Grid -->
+
+    <div class="container my-5" id="article-grid">
+	<div class="row">
+
+        {% for pl in post_list_detail %}
+
+		<div class="col-lg-6 text-center">
+			<a href="{% url 'post_detail' pl.id %}">
+			<div class="article-card">
+			<div class="article-img">
+				<img src="{{ pl.image.url }}" alt="">
+			</div>
+
+				<div class="article-meta text-left">
+					<h2>{{ pl.title }}</h2>
+					<p>{{ pl.subtitle }}</p>
+				</div>
+			</div>
+			</a>
+		</div>
+
+        {% endfor %}
+
+
+
+	</div>
+</div>
+
+{% endblock %}
